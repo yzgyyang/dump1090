@@ -22,8 +22,8 @@ ifeq ($(RTLSDR), yes)
     CPPFLAGS += -I$(RTLSDR_PREFIX)/include
     LDFLAGS += -L$(RTLSDR_PREFIX)/lib
   else
-    CFLAGS += $(shell pkg-config --cflags librtlsdr)
-    LDFLAGS += $(shell pkg-config --libs-only-L librtlsdr)
+    CFLAGS += $(shell pkgconf --cflags librtlsdr)
+    LDFLAGS += $(shell pkgconf --libs-only-L librtlsdr)
   endif
 
   ifeq ($(STATIC), yes)
@@ -36,8 +36,8 @@ endif
 ifeq ($(BLADERF), yes)
   SDR_OBJ += sdr_bladerf.o
   CPPFLAGS += -DENABLE_BLADERF
-  CFLAGS += $(shell pkg-config --cflags libbladeRF)
-  LIBS_SDR += $(shell pkg-config --libs libbladeRF)
+  CFLAGS += $(shell pkgconf --cflags libbladeRF)
+  LIBS_SDR += $(shell pkgconf --libs libbladeRF)
 endif
 
 all: dump1090 view1090
